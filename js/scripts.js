@@ -101,6 +101,45 @@ document.addEventListener('DOMContentLoaded', function () {
 	})
 
 
+	// Карусель видео из ютуба
+	const videosSliders = [],
+		videos = document.querySelectorAll('.videos .swiper')
+
+	videos.forEach(function (el, i) {
+		el.classList.add('videos_s' + i)
+
+		let options = {
+			loop: false,
+			speed: 500,
+			watchSlidesProgress: true,
+			slideActiveClass: 'active',
+			slideVisibleClass: 'visible',
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev'
+			},
+			preloadImages: false,
+			lazy: {
+				enabled: true,
+				checkInView: true,
+				loadOnTransitionStart: true,
+				loadPrevNext: true
+			},
+			spaceBetween: 24,
+			slidesPerView: 'auto',
+			on: {
+				activeIndexChange: swiper => {
+					$(swiper.$el).find('iframe').each(function () {
+						this.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*')
+				 	})
+				}
+			}
+		}
+
+		videosSliders.push(new Swiper('.videos_s' + i, options))
+	})
+
+
 	// Карусель товаров
 	const productsSliders = [],
 		products = document.querySelectorAll('.products_swiper'),

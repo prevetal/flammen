@@ -373,6 +373,13 @@
 
 
 
+    .product_tabs .videos .swiper-slide
+    {
+        width: 320px;
+    }
+
+
+
     .product_tabs .video_link .icon
     {
         width: 80px;

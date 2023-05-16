@@ -909,6 +909,13 @@
 
 
 
+    .product_tabs .videos .swiper-slide
+    {
+        width: 480px;
+    }
+
+
+
     /*-----------
         Files
     -----------*/
